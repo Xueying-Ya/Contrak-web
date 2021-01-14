@@ -1,0 +1,26 @@
+{
+  "name": "contrak-web",
+  "version": "1.0.0",
+  "description": "contrak socket",
+  "main": "index.js",
+  "scripts": {
+    "test": "socket test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xueying-Ya/contrak-web.git"
+  },
+  "keywords": [
+    "socket.io"
+  ],
+  "author": "Sadanan",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Xueying-Ya/contrak-web/issues"
+  },
+  "homepage": "https://github.com/Xueying-Ya/contrak-web#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.0.5"
+  }
+}
