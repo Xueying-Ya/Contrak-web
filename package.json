@@ -1,26 +1,26 @@
 {
-  "name": "contrak-web",
+  "name": "socketio",
   "version": "1.0.0",
-  "description": "contrak socket",
+  "description": "\"test socket\"",
   "main": "index.js",
   "scripts": {
-    "test": "socket test"
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Xueying-Ya/contrak-web.git"
   },
-  "keywords": [
-    "socket.io"
-  ],
   "author": "Sadanan",
-  "license": "UNLICENSED",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Xueying-Ya/contrak-web/issues"
   },
   "homepage": "https://github.com/Xueying-Ya/contrak-web#readme",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "nodemon": "^2.0.7",
     "socket.io": "^3.0.5"
   }
 }
