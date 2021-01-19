@@ -18,11 +18,9 @@
   },
   "homepage": "https://github.com/Xueying-Ya/contrak-web#readme",
   "dependencies": {
-    "async": "file:node_modules/async",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
-    "socket.io": "^3.0.5",
-    "thai-baht-text": "^1.0.8"
+    "socket.io": "^3.0.5"
   }
 }
