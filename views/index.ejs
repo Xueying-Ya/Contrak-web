@@ -50,7 +50,7 @@
   <header><div id="popover-content-1" class="hide">การกู้ยืมเงินเกินกว่า 2000 บาทขึ้นไป ต้องมีหลักฐานการกู้ยืมเงินเพื่อใช้ในการฟ้องร้องบังคับคดี</div>
   <h1><center><span data-toggle='popover-1' class="underline-on-hover">สัญญากู้ยืมเงิน</span> (ทั่วไป)</center></h1></br></header>
 
-	<form action="/contrak-web/makepdf.php" method="post">
+	<form action="/makepdf.php" method="post">
 		<ul class="form-style-1">
 		<p class = "content">
 		สัญญาฉบับนี้ทำขึ้นเมื่อวันที่<select name = num_date_create id = num_date_create class="1-31"></select>
@@ -280,10 +280,8 @@
 
 <!--socket + client-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
-<script src="/js/chatroom.js"></script>
-
 <script>
-  var socket = io.connect('https://legal-contrak.herokuapp.com/');
+  var socket = io.connect('http://localhost:3000/');
 
   //interest_add
   $('#interest_add_fn').on('click', function(event){
