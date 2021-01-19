@@ -6,12 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="/css/style.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/thai-baht-text@1.0.8/thai-baht-text.min.js"></script>
 <script>
 　　TogetherJSConfig_hubBase = "https://togetherjs-hub.glitch.me/";//这个是你本地服务器地址
     
@@ -43,13 +45,14 @@
             <li><a href="#" id = "other_add_fn"><i class="fas fa-plus-square"></i>เงื่อนไขตกลงอื่น ๆ</a></li>
 			      <li><a href="#" id = "delete_last_append"><i class="fas fa-minus-square"></i>ลบเงื่อนไขที่เพิ่มล่าสุด</a></li>
             <li><a href="#" id = "reset"><i class="fas fa-undo"></i>รีเซ็ทแบบฟอร์ม</a></li>
+            <li><button class="buttonload" id = "waiting_num"><i class="fa fa-circle-o-notch fa-spin"></i>รอยืนยันร่างสัญญา</button></li>
 		</div>
     </div>
         <!-- /#sidebar-wrapper -->
 
   <header><div id="popover-content-1" class="hide">การกู้ยืมเงินเกินกว่า 2000 บาทขึ้นไป ต้องมีหลักฐานการกู้ยืมเงินเพื่อใช้ในการฟ้องร้องบังคับคดี</div>
   <h1><center><span data-toggle='popover-1' class="underline-on-hover">สัญญากู้ยืมเงิน</span> (ทั่วไป)</center></h1></br></header>
-
+  
 	<form action="/makepdf.php" method="post">
 		<ul class="form-style-1">
 		<p class = "content">
@@ -126,7 +129,7 @@
 	<!--ผู้กู้ pop-up end-->
 	
 	<p class="content">ทั้งสองฝ่ายตกลงกันทำสัญญาดังต่อไปนี้<p>
-	<p class="content">ข้อ 1.  ผู้กู้ได้กู้ยืมเงินจากผู้ให้กู้เป็นเงิน<input type="number" name = "money_num" id ="money_num" required>บาท*(<input type="text" name = "money_read" id = "money_read">)</p>
+	<p class="content">ข้อ 1.  ผู้กู้ได้กู้ยืมเงินจากผู้ให้กู้เป็นเงิน<input type="text" name = "money_num" class = "currency_input" id ="money_num" onblur ="convert_to_th()" required>บาท*(<input type="text" name = "money_read" class = "money_read" id = "money_read">)</p>
 	
 	
 	<!--โดยในวันทำสัญญานี้ผู้ให้กู้ได้ส่งมอบเงินที่กู้ยืมเรียบร้อยแล้ว pop-up-->
@@ -241,9 +244,16 @@
 ลงชื่อ………………………………….พยาน / ผู้พิมพ์<br/>
 
 </div>
-<button type="submit" class="btn btn-secondary btn-sm">แปลงไฟล์เป็น PDF</button>
+<button type="button" id ="approve" class="btn btn-secondary btn-sm" style="background-color:rgb(63, 63, 182);">ยืนยันในการร่างสัญญา</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="submit" id = "convertpdf" class="btn btn-secondary btn-sm" disabled>แปลงไฟล์เป็น PDF</button>
+
+<!--enable_submit-->
+<script>function enablesubmit() {
+  document.getElementById("convertpdf").disabled = false;
+  }</script>
 	</ul>
 </form>
+<!--enable_submit END-->
 
 <!-- modal when visit page-->
 <div class="modal fade" id="visit_modal" tabindex="-1" role="dialog" aria-labelledby="visit_modal_label" aria-hidden="true" data-keyboard="false" data-backdrop="static">
@@ -275,13 +285,14 @@
   </div>
 </div>
 <!-- modal when visit page END-->
-
 </body>
 
 <!--socket + client-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
 <script>
+  //var socket = io.connect('https://legal-contrak.herokuapp.com/');
   var socket = io.connect('http://localhost:3000/');
+  let waiting = document.querySelector('#waiting_num');
 
   //interest_add
   $('#interest_add_fn').on('click', function(event){
@@ -336,6 +347,23 @@
   socket.on('reset_click', function (data) {
     reset(); 
   });
+
+  //sync_approve
+  $('#approve').on('click', function(event){
+    document.getElementById("approve").disabled = true;
+    socket.emit('sync_approve', { id : event.target});
+  });
+
+  socket.on('waiting_update', function (data) {
+    //อัพเดตช่องบอกจำนวน
+    waiting.textContent = data.msg
+  });
+
+  socket.on('enable_convertpdf', function (data) {
+    enablesubmit(); 
+  });
+
+
 
 </script>
 
@@ -429,5 +457,17 @@ Pop_over_add_9();
   {window.onbeforeunload = function(){if(TogetherJS.running){TogetherJS(this); return;};}}
 </script>
 <!--delete user session END-->
+
+<!--แปลงค่าเงิน-->
+<script>$('#money_num').on('blur', function() {
+  //แปลงให้เงินใส่ , 
+  let money = $(this).val();
+  let money_text = THBText(money)
+  
+  $('#money_read').val(money_text)
+
+});</script>
+<!--แปลงค่าเงิน npm-->
+
 
 </html>

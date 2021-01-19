@@ -15,6 +15,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
 
 // Initialize socket for the server
 const io = socketio(server);
+var approveClients = 0;
 
 io.on("connection", socket => {
   console.log("New user connected");
@@ -49,4 +50,19 @@ io.on("connection", socket => {
     io.emit('reset_click', data);
   })
 
+  socket.on("sync_approve", function() {
+    //console.log("Client approve!");
+    approveClients++;
+    //console.log("Approved Clients: " + approveClients + "/" + io.engine.clientsCount);
+    if (approveClients == io.engine.clientsCount) {
+      //console.log("Approve is synced! Sending start event...");
+      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + io.engine.clientsCount });
+      io.sockets.emit("enable_convertpdf");
+      approveClients = 0;
+    } else {
+      console.log("Approve is not synced yet! Waiting...");
+      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + io.engine.clientsCount });
+    }   
+  })
+  
 });
