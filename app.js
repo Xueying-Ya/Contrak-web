@@ -61,7 +61,7 @@ io.on("connection", socket => {
       io.sockets.emit("enable_convertpdf");
       
     } else {
-      console.log("Approve is not synced yet! Waiting...");
+      //console.log("Approve is not synced yet! Waiting...");
       io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + allClients });
     }   
   })
@@ -73,6 +73,15 @@ io.on("connection", socket => {
   socket.on('disconnect', function () {
     if (io.engine.clientsCount == 0) {
       approveClients = 0;  
+    }
+    if (approveClients == io.engine.clientsCount) {
+      //console.log("Approve is synced! Sending start event...");
+      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + io.engine.clientsCount });
+      io.sockets.emit("enable_convertpdf");
+      
+    } else {
+      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + io.engine.clientsCount });
+      
     }
   })
   
