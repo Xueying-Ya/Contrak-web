@@ -15,6 +15,9 @@ const server = app.listen(process.env.PORT || 3000, () => {
 
 // Initialize socket for the server
 const io = socketio(server);
+io.set('heartbeat timeout', 50000);
+io.set('heartbeat interval', 2000);
+
 var approveClients = 0;
 
 io.on("connection", socket => {
