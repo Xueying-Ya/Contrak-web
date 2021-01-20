@@ -14,7 +14,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
 });
 
 // Initialize socket for the server
-const io = socketio(server, {pingInterval: 10000,pingTimeout: 5000,});
+const io = socketio(server);
 
 var approveClients = 0;
 
