@@ -31,29 +31,29 @@
 <script src="https://togetherjs.com/togetherjs-min.js"></script>
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
-<!--กู้ยืม pop-up -->
-<body>
 <!-- Sidebar -->
-	<div class="wrapper">
-    <div class="sidebar">
-        <h2>เงื่อนไขเพิ่มเติม</h2>
-        <ul>
-            <!--<li id = "colab"><a href="#" id = "togetherJS" onclick="TogetherJS(this); return false;"><i id = "user" class="fa fa-users" aria-hidden="true"></i>&nbsp;ร่วมกันร่างสัญญา</a></li>-->
-            <li><a href="#" id = "interest_add_fn"><i class="fas fa-plus-square"></i></i>ดอกเบี้ย</a></li>
-            <li><a href="#" id = "accept_other_add_fn"><i class="fas fa-plus-square"></i>การยอมรับเอาสิ่งของหรือทรัพย์สินอื่นแทนเงิน</a></li>
-            <li><a href="#" id = "Luksub_add_fn"><i class="fas fa-plus-square"></i>นำหลักทรัพย์ไว้เป็นประกันชำระหนี้</a></li>
-            <li><a href="#" id = "other_add_fn"><i class="fas fa-plus-square"></i>เงื่อนไขตกลงอื่น ๆ</a></li>
-			      <li><a href="#" id = "delete_last_append"><i class="fas fa-minus-square"></i>ลบเงื่อนไขที่เพิ่มล่าสุด</a></li>
-            <li><a href="#" id = "reset"><i class="fas fa-undo"></i>รีเซ็ทแบบฟอร์ม</a></li>
-            <li><button class="buttonload" id = "waiting_num"><i class="fa fa-circle-o-notch fa-spin"></i>รอยืนยันร่างสัญญา</button></li>
-		</div>
-    </div>
-        <!-- /#sidebar-wrapper -->
+<div class="wrapper">
+  <div class="sidebar">
+      <h2>เงื่อนไขเพิ่มเติม</h2>
+      <ul>
+          <!--<li id = "colab"><a href="#" id = "togetherJS" onclick="TogetherJS(this); return false;"><i id = "user" class="fa fa-users" aria-hidden="true"></i>&nbsp;ร่วมกันร่างสัญญา</a></li>-->
+          <li><a href="#" id = "interest_add_fn"><i class="fas fa-plus-square"></i></i>ดอกเบี้ย</a></li>
+          <li><a href="#" id = "accept_other_add_fn"><i class="fas fa-plus-square"></i>การยอมรับเอาสิ่งของหรือทรัพย์สินอื่นแทนเงิน</a></li>
+          <li><a href="#" id = "Luksub_add_fn"><i class="fas fa-plus-square"></i>นำหลักทรัพย์ไว้เป็นประกันชำระหนี้</a></li>
+          <li><a href="#" id = "other_add_fn"><i class="fas fa-plus-square"></i>เงื่อนไขตกลงอื่น ๆ</a></li>
+          <li><a href="#" id = "delete_last_append"><i class="fas fa-minus-square"></i>ลบเงื่อนไขที่เพิ่มล่าสุด</a></li>
+          <li><a href="#" id = "reset"><i class="fas fa-undo"></i>รีเซ็ทแบบฟอร์ม</a></li>
+          <li><button class="buttonload" id = "waiting_num" ><i class="fa fa-circle-o-notch fa-spin"></i>รอยืนยันร่างสัญญา</button></li>
+  </div>
+  </div>
+      <!-- /#sidebar-wrapper -->
+<body>
 
+<!--กู้ยืม pop-up -->
   <header><div id="popover-content-1" class="hide">การกู้ยืมเงินเกินกว่า 2000 บาทขึ้นไป ต้องมีหลักฐานการกู้ยืมเงินเพื่อใช้ในการฟ้องร้องบังคับคดี</div>
   <h1><center><span data-toggle='popover-1' class="underline-on-hover">สัญญากู้ยืมเงิน</span> (ทั่วไป)</center></h1></br></header>
   
-	<form id ="makepdf" action="/makepdf.php" method="post">
+	<form id ="makepdf" action="javascript:window.print()">
 		<ul class="form-style-1">
 		<p class = "content">
 		สัญญาฉบับนี้ทำขึ้นเมื่อวันที่<select name = num_date_create id = num_date_create class="1-31"></select>
@@ -244,9 +244,10 @@
 ลงชื่อ………………………………….พยาน / ผู้พิมพ์<br/>
 
 </div>
+<div class = "button">
 <button type="button" id ="approve" class="btn btn-secondary btn-sm" style="background-color:rgb(63, 63, 182);">ยืนยันในการร่างสัญญา</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button type="submit" id = "convertpdf" class="btn btn-secondary btn-sm" disabled>แปลงไฟล์เป็น PDF</button>
-
+</div>
 <!--enable_submit-->
 <script>function enablesubmit() {
   document.getElementById("convertpdf").disabled = false;
@@ -264,21 +265,48 @@
         <center><h4 class="modal-title" id="modal-title-label"><strong>กรุณาเลือกโหมดในการร่างสัญญา</strong></h4></center>
       </div>
       <div class="modal-body">   
-  
-        <div class="row">
-          <div class="col-md-6">
-            <a href="#" id = "one-mode" class = "link">
-              <center><i class="fas fa-user fa-10x"></i></center>
-              <center>ร่างสัญญาด้วยตัวเอง</center>
-            </a>
+        <form id="modal-form">
+        <center>
+          <fieldset>
+            <input type="radio" name="mode" class="sr-only" id="one">
+            <label for="one">
+              <img src="https://findicons.com/files/icons/560/fast_icon_users/128/user.png" alt="one" onclick="user_one();">
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="mode" class="sr-only" id="multiple">
+            <label for="multiple">
+              <img src="https://findicons.com/files/icons/560/fast_icon_users/128/user_group.png" alt="multiple" onclick="user_multi();">
+            </label>
+          </fieldset>
+          </center>
+           
+           <p></p>
+            
+            
+            <div hidden class="form-group" id= "collab_field">
+              <label for="collaboration-num">จำนวนผู้เข้าร่วมร่างสัญญา (รวมคุณด้วย)</label>
+              <input type="number" min ="2" class="form-control" id="collab_num" aria-describedby="collab_num" placeholder="จำนวนผู้เข้าร่วมร่างสัญญาทั้งหมด">
+            </div>
+           
+           <label for="term_of_payment">เกณฑ์และกำหนดการจ่ายเงิน</label>
+           <div class="form-check">
+            <label class="form-check-label" for="one_time_payment">
+            <input class="form-check-input" type="radio" name="payment" id="one_time_payment" value="1" required> จ่ายงวดเดียว
+            </label>
           </div>
-          <div class="col-md-6">
-            <a href="#" onclick="TogetherJS(this); return false;" id = "multiple-mode" class ='link'>
-              <center><i class="fas fa-users fa-10x"></i></center>
-              <center>ร่างสัญญาร่วมกับผู้อื่น</center>
-            </a>
-          </div>
-        </div>
+          <div class="form-check">
+            <label class="form-check-label" for="many_time_payment">
+            <input class="form-check-input" type="radio" name="payment" id="many_time_payment" value="2" required> จ่ายเป็นงวด
+            </label>
+           </div>
+          
+           
+           <div class="submit-button">
+           <center><button type="button" class="btn btn-primary" id ="form_create_submit" onclick ="get_data();">ส่งข้อมูล</button></center>
+            </div>
+            </form>
+            
+           </form>
 
       </div>
     </div>
@@ -290,82 +318,98 @@
 <!--socket + client-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
 <script>
-  var socket = io.connect('https://legal-contrak.herokuapp.com/');
-  //var socket = io.connect('http://localhost:3000/');
+  //var socket = io.connect('https://legal-contrak.herokuapp.com/');
+  var socket = io.connect('http://localhost:3000/');
+
   let waiting = document.querySelector('#waiting_num');
 
-  //interest_add
-  $('#interest_add_fn').on('click', function(event){
-      socket.emit('interest_add_click', { id : event.target});
-  });
+  TogetherJS.on("ready", function(event){
+    let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+    socket.emit('join', room_id);
+
+    //interest_add
+    $('#interest_add_fn').on('click', function(event){
+      let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+      socket.emit('interest_add_click', room_id);
+    });
   
-  socket.on('interest_add_click', function (data) {
-    interest_add_fn(); 
-  }); 
+    socket.on('interest_add_click', function (data) {
+      interest_add_fn(); 
+    }); 
   
-  //accept_other_add
-  $('#accept_other_add_fn').on('click', function(event){
-    socket.emit('accept_other_add_click', { id : event.target});
-  });
+    //accept_other_add
+    $('#accept_other_add_fn').on('click', function(event){
+      let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+      socket.emit('accept_other_add_click', room_id);
+    });
 
-  socket.on('accept_other_add_click', function (data) {
-    accept_other_add_fn(); 
-  }); 
+    socket.on('accept_other_add_click', function (data) {
+      accept_other_add_fn(); 
+    }); 
 
-  //Luksub_add_fn
-  $('#Luksub_add_fn').on('click', function(event){
-    socket.emit('Luksub_add_click', { id : event.target});
-  });
+    //Luksub_add_fn
+    $('#Luksub_add_fn').on('click', function(event){
+      let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+      socket.emit('Luksub_add_click', room_id);
+    });
 
-  socket.on('Luksub_add_click', function (data) {
-    Luksub_add_fn(); 
-  }); 
+    socket.on('Luksub_add_click', function (data) {
+      Luksub_add_fn(); 
+    }); 
 
-  //other_add_fn
-  $('#other_add_fn').on('click', function(event){
-    socket.emit('other_add_click', { id : event.target});
-  });
+    //other_add_fn
+    $('#other_add_fn').on('click', function(event){
+      let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+      socket.emit('other_add_click',room_id);
+    });
 
-  socket.on('other_add_click', function (data) {
-    other_add_fn(); 
-  });
+    socket.on('other_add_click', function (data) {
+      other_add_fn(); 
+    });
 
-  //delete_last_append
-  $('#delete_last_append').on('click', function(event){
-    socket.emit('delete_last_append_click', { id : event.target});
-  });
+    //delete_last_append
+    $('#delete_last_append').on('click', function(event){
+      let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+      socket.emit('delete_last_append_click', room_id);
+    });
 
-  socket.on('delete_last_append_click', function (data) {
-    delete_last_append(); 
-  });
+    socket.on('delete_last_append_click', function (data) {
+      delete_last_append(); 
+    });
 
-  //reset
-  $('#reset').on('click', function(event){
-    socket.emit('reset_click', { id : event.target});
-  });
+    //reset
+    $('#reset').on('click', function(event){
+      let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+      socket.emit('reset_click', room_id);
+    });
 
-  socket.on('reset_click', function (data) {
-    reset(); 
-  });
+    socket.on('reset_click', function (data) {
+      reset(); 
+    });
 
-  //sync_approve
-  $('#approve').on('click', function(event){
-    document.getElementById("approve").disabled = true;
-    socket.emit('sync_approve', { id : event.target});
-  });
+    //sync_approve
+    $('#approve').on('click', function(event){
+      document.getElementById("approve").disabled = true;
+      let room_id = $("input.togetherjs-share-link").val().split('=')[1];
+      let client_num = $("#collab_num").val();
+      socket.emit('sync_approve', {client_num : client_num , room_id : room_id});
+    });
 
-  socket.on('waiting_update', function (data) {
+    socket.on('waiting_update', function (data) {
     //อัพเดตช่องบอกจำนวน
-    waiting.textContent = data.msg
-  });
+      waiting.textContent = data.msg
+    });
 
-  socket.on('enable_convertpdf', function (data) {
-    enablesubmit(); 
-  });
+    socket.on('enable_convertpdf', function (data) {
+      enablesubmit(); 
+    });
 
-  $('#form').submit(function(event){
-    socket.emit('submit_click', { id : event.target});
-  });
+    $('#makepdf').submit(function(event){
+      socket.emit('submit_click', { id : event.target});
+    });
+
+
+});
 
 </script>
 
@@ -385,18 +429,30 @@
 
 <!-- Visit page modal show-->
 
-<!--check client or host status [maybe improve later] use session instesd??-->
+<!--check client or host status [maybe improve later] use session instesd?? + modal-->
 <script>
   if (window.location.href.indexOf("#") == -1){ $(function modal() {
       // Open modal on page load
       $("#visit_modal").modal('show');
       // Close modal on href click
-      $("#multiple-mode").click(function(){$("#visit_modal").modal('hide'); });
-      
-      $("#one-mode").click(function(){$("#visit_modal").modal('hide'); return false;});
-    
-    });
+      $("#form_create_submit").on('click',function(){$("#visit_modal").modal('hide')}); 
+    })
+}
+function user_multi(){$("#collab_num").attr('required',true).val(2);$("#collab_field").show();} 
+function user_one(){$("#collab_num").attr('required',false).removeAttr('min').val(1);$("#collab_field").hide();}
+function get_data(){var client_num = $("#collab_num").val(); 
+  if(client_num > 1){TogetherJS(this);return false;} 
+  else {socket.disconnect();    
+    $('#interest_add_fn').on('click', function(){interest_add_fn();})
+    $('#accept_other_add_fn').on('click', function(){accept_other_add_fn();})
+    $('#Luksub_add_fn').on('click', function(){Luksub_add_fn();})
+    $('#other_add_fn').on('click', function(){other_add_fn();})
+    $('#delete_last_append').on('click', function(){delete_last_append();})
+    $('#reset').on('click', function(){reset();})
+    $("#waiting_num").hide();
+    $('#approve').on('click', function(){enablesubmit();})
   }
+}
 </script>
 <!--check client or host status [maybe improve later] use session instesd?? END-->
 
@@ -469,7 +525,7 @@ Pop_over_add_9();
   if (!money_text.includes("undefined")){$('#money_read').val(money_text)};
 
 });</script>
-<!--แปลงค่าเงิน npm-->
 
+<!--แปลงค่าเงิน npm-->
 
 </html>

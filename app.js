@@ -15,75 +15,60 @@ const server = app.listen(process.env.PORT || 3000, () => {
 
 // Initialize socket for the server
 const io = socketio(server);
-
-var approveClients = 0;
+var count = {};
 
 io.on("connection", socket => {
+
   console.log("New user connected");
 
-  socket.username = "Anonymous"
-
-  socket.on("change_username", data => {
-    socket.username = data.username
+  socket.on('join', function(data) {
+    socket.join(data);
+    if(!(data in count)){count[data] = 0;};
   })
 
   socket.on('interest_add_click', function (data) {
-    io.emit('interest_add_click', data);
+    io.to(data).emit('interest_add_click', data);
   })
 
   socket.on('accept_other_add_click', function (data) {
-    io.emit('accept_other_add_click', data);
+    io.to(data).emit('accept_other_add_click', data);
   })
 
   socket.on('Luksub_add_click', function (data) {
-    io.emit('Luksub_add_click', data);
+    io.to(data).emit('Luksub_add_click', data);
   })
 
   socket.on('delete_last_append_click', function (data) {
-    io.emit('delete_last_append_click', data);
+    io.to(data).emit('delete_last_append_click', data);
   })
 
   socket.on('other_add_click', function (data) {
-    io.emit('other_add_click', data);
+    io.to(data).emit('other_add_click', data);
   })
 
   socket.on('reset_click', function (data) {
-    io.emit('reset_click', data);
+    io.to(data).emit('reset_click', data);
   })
 
-  socket.on("sync_approve", function() {
-    const allClients = io.engine.clientsCount;
-    approveClients++;
+  //ถึงนี่ + ทำห้องเดี่ยว /// ถ้ากดเลือกเดี่ยว hide link ไว้ไหม // ให้ใส่จำนวน //เอาจำนวนครั้งใส่ array ไว้ตาม room_id
+  socket.on("sync_approve", function(data) {
+    const allClients = data.client_num;
+    approveClients = count[data.room_id];
+    approveClients++
     //console.log("Approved Clients: " + approveClients + "/" + io.engine.clientsCount);
 
     if (approveClients == allClients) {
       //console.log("Approve is synced! Sending start event...");
-      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + allClients });
-      io.sockets.emit("enable_convertpdf");
+      io.to(data.room_id).emit('waiting_update', { msg : "Approved : " + approveClients + "/" + allClients });
+      io.to(data.room_id).emit("enable_convertpdf");
+      count[data.room_id] = approveClients;
       
     } else {
       //console.log("Approve is not synced yet! Waiting...");
-      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + allClients });
+      io.to(data.room_id).emit('waiting_update', { msg : "Approved : " + approveClients + "/" + allClients });
+      count[data.room_id] = approveClients;
     }   
   })
-
-  socket.on('submit_click', function () {
-    approveClients = 0;
-  })
   
-  socket.on('disconnect', function () {
-    if (io.engine.clientsCount == 0) {
-      approveClients = 0;  
-    }
-    if (approveClients == io.engine.clientsCount) {
-      //console.log("Approve is synced! Sending start event...");
-      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + io.engine.clientsCount });
-      io.sockets.emit("enable_convertpdf");
-      
-    } else {
-      io.sockets.emit('waiting_update', { msg : "Approved : " + approveClients + "/" + io.engine.clientsCount });
-      
-    }
-  })
   
 });

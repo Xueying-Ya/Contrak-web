@@ -181,3 +181,39 @@ h1 {
   margin-left: -12px;
   margin-right: 8px;
 }
+
+label {
+  cursor: pointer;
+  filter: grayscale(100%);
+}
+
+label:hover {
+  filter: grayscale(0);
+}
+input[type="radio"]:checked + label {
+  filter: grayscale(0);
+}
+@media print {
+  title { text-align: center; }
+  .sidebar {
+     visibility: hidden;
+  }
+  .button {
+    visibility: hidden;
+ }
+ input
+{
+    background: transparent;
+    border: none;
+}
+select {
+  border: 1px solid #fff;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+@page { margin: 0; }
+  body { margin: 1.6cm; }
+}
