@@ -318,12 +318,13 @@
 <!--socket + client-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js"></script>
 <script>
-  //var socket = io.connect('https://legal-contrak.herokuapp.com/');
-  var socket = io.connect('http://localhost:3000/');
+  var socket = io.connect('https://legal-contrak.herokuapp.com/');
+  //var socket = io.connect('http://localhost:3000/');
 
   let waiting = document.querySelector('#waiting_num');
 
   TogetherJS.on("ready", function(event){
+    console.log('ready');
     let room_id = $("input.togetherjs-share-link").val().split('=')[1];
     socket.emit('join', room_id);
 
