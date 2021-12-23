@@ -1,12 +1,7 @@
-# contrak-web demo
-legal tech year 2 ACELA team
-https://legal-contrak.herokuapp.com/
-(สัญญากู้)
-
-<!-- Contrak -->
+<!-- Contrak by ACELA team -->
 <br />
 <div align="center">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://cdn-icons.flaticon.com/png/512/2493/premium/2493530.png?token=exp=1640288403~hmac=2f4a035a7a0dc0c6ed6a9e3b7548299f" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Contrak</h3>
