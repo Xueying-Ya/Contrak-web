@@ -8,12 +8,10 @@
 </div>
 
 
-* The website that will automatically provide you
-<li>Contract Templates</li>
-<br />
-<li>Contract checking</li>
-<br />
-<li>Field description</li>
+### The website that will automatically provide you
+* Contract Templates
+* Contract checking
+* Field description
 <br />
 <a href="https://legal-contrak.herokuapp.com/">View Demo</a>
 </p>
