@@ -5,20 +5,20 @@
   </a>
 
 <h3 align="center">Contrak</h3>
-
-  <p align="center">
-    The website that will automatically provide you
-    <li>Contract Templates</li>
-    <br />
-    <li>Contract checking</li>
-    <br />
-    <li>Field description</li>
-    <br />
-    <a href="https://legal-contrak.herokuapp.com/">View Demo</a>
-  </p>
 </div>
 
-<!-- Demo -->
+
+*The website that will automatically provide you
+<li>Contract Templates</li>
+<br />
+<li>Contract checking</li>
+<br />
+<li>Field description</li>
+<br />
+<a href="https://legal-contrak.herokuapp.com/">View Demo</a>
+</p>
+
+
 
 ![Contrak](https://user-images.githubusercontent.com/62151531/147284492-49bbaa7f-2146-4378-ae6d-9a530712732e.png)
 
