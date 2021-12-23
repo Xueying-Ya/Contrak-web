@@ -7,21 +7,20 @@
 <h3 align="center">Contrak</h3>
 
   <p align="center">
-    project_description
+    The website that will automatically provide you
+    <li>Contract Templates</li>
+    <br />
+    <li>Contract checking</li>
+    <br />
+    <li>Field description</li>
     <br />
     <a href="https://legal-contrak.herokuapp.com/">View Demo</a>
   </p>
 </div>
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+<!-- Demo -->
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
+![Contrak](https://user-images.githubusercontent.com/62151531/147284492-49bbaa7f-2146-4378-ae6d-9a530712732e.png)
 
 
 ### Built With
