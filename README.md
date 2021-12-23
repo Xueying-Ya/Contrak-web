@@ -8,7 +8,7 @@
 </div>
 
 
-*The website that will automatically provide you
+* The website that will automatically provide you
 <li>Contract Templates</li>
 <br />
 <li>Contract checking</li>
@@ -17,6 +17,8 @@
 <br />
 <a href="https://legal-contrak.herokuapp.com/">View Demo</a>
 </p>
+<br />
+<br />
 
 
 
