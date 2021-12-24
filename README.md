@@ -12,6 +12,7 @@
 * Contract Templates
 * Contract checking
 * Field description
+* Real-time editing and collaboration
 <br />
 <a href="https://legal-contrak.herokuapp.com/">View Demo</a>
 </p>
@@ -21,6 +22,9 @@
 
 
 ![Contrak](https://user-images.githubusercontent.com/62151531/147284492-49bbaa7f-2146-4378-ae6d-9a530712732e.png)
+<br />
+![Chat](https://user-images.githubusercontent.com/62151531/147322485-aa6b057a-c804-4a8d-9200-4e10edbd5f62.png)
+
 
 
 ### Built With
