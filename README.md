@@ -34,6 +34,6 @@
 * [JQuery](https://jquery.com)
 * [TogetherJS](https://togetherjs.com/)
 * [Socket.IO](https://socket.io/)
-* [Heroku]
+* [Heroku](https://www.heroku.com/)
 
 
